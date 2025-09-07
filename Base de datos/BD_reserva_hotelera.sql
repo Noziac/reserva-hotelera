@@ -1,5 +1,17 @@
+-- Elimina la base de datos si ya existe, para empezar de cero
+DROP DATABASE IF EXISTS reservas_hotel;
+-- Crear DB
 CREATE DATABASE reservas_hotel;
 USE reservas_hotel;
+
+-- Elimina las tablas si existen (útil para pruebas)
+-- Se eliminan en orden inverso para evitar problemas de dependencias (Foreign Keys)
+DROP TABLE IF EXISTS tickets_qr CASCADE;
+DROP TABLE IF EXISTS pagos CASCADE;
+DROP TABLE IF EXISTS reservas CASCADE;
+DROP TABLE IF EXISTS habitaciones CASCADE;
+DROP TABLE IF EXISTS usuarios CASCADE;
+DROP TABLE IF EXISTS reportes CASCADE;
 
 -- Tabla de usuarios
 CREATE TABLE usuarios (
