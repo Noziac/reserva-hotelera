@@ -1,0 +1,112 @@
+/* Contenedor principal */
+.guest-info-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Títulos de sección */
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid white;
+    padding-bottom: 0.5rem;
+}
+
+/* Grillas de información */
+.info-grid,
+.payment-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1rem 3rem;
+}
+
+/* Ítems individuales */
+.info-item,
+.payment-item {
+    display: contents;
+}
+
+/* Etiquetas */
+.info-item label,
+.payment-item label {
+    font-weight: bold;
+    color: white;
+    align-self: center;
+}
+
+/* Valores estáticos */
+.info-item span {
+    color: white;
+    align-self: center;
+}
+
+/* Inputs */
+.info-item input,
+.payment-item input {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 1rem;
+}
+
+/* Botón guardar tarjeta */
+.save-card-btn {
+    background-color: #ff4500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+/* Botón continuar */
+.continue-btn {
+    background-color: #ff4500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover para ambos botones */
+.save-card-btn:hover,
+.continue-btn:hover {
+    background-color: #ff5722;
+}
+
+/* Contenedor de botones */
+.navigation-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+/* Resumen de reserva */
+.reservation-summary {
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 2rem;
+}
+
+.summary-grid div {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 5px;
+}

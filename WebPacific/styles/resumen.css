@@ -1,0 +1,74 @@
+.resumen-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: #1a1a1a;
+}
+
+.resumen-container h1 {
+    color: white;
+    margin-bottom: 30px;
+}
+
+.resumen-card {
+    background-color: #808080;
+    border-radius: 10px;
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.cliente-info,
+.reserva-info,
+.precio-info {
+    margin-bottom: 25px;
+}
+
+h3 {
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.label {
+    font-weight: bold;
+    color: #333;
+}
+
+.value {
+    color: #333;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.rechazar-btn,
+.confirmar-btn {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+
+.rechazar-btn {
+    background-color: #ff0000;
+}
+
+.confirmar-btn {
+    background-color: #33cc33;
+}

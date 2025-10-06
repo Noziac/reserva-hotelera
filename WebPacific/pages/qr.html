@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Pacific Reef</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/qr.css">
+</head>
+
+<body>
+    <header>
+        <div id="site-header">
+            <nav class="navbar">
+                <!-- Logo y nombre del hotel -->
+                <div class="logo-container">
+                    <a href="/">
+                        <img src="/images/logo/logo_movil.png" alt="Hotel Reef Logo" class="logo">
+                    </a>
+                </div>
+
+                
+                <!-- Menú de navegación principal -->
+                <div class="nav-links">
+                    <a href="/">INICIO</a>
+                    <a href="/shows">SHOWS</a>
+                    <a href="/club">PACIFIC CLUB</a>
+                    <a href="/reserva">RESERVA</a>
+                    <div class="cuenta-dropdown">
+                        <button id="cuenta-btn">MI CUENTA</button>
+                        <div id="cuenta-menu" class="cuenta-menu hidden">
+                          
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Selector de idioma -->
+                <div class="language-selector">
+                    <span id="current-lang">ES</span>
+                    <img src="https://flagcdn.com/w20/es.png" alt="Español" id="lang-es">
+                    <img src="https://flagcdn.com/w20/gb.png" alt="English" id="lang-en">
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="qr-container">
+            <div class="qr-card">
+                <h2>GENERACIÓN QR</h2>
+                
+                <div class="qr-image">
+                    
+                </div>
+
+                <p class="qr-message">QR enviado al correo</p>
+
+                <button class="download-btn">DESCARGAR</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div id="site-footer">
+            <div class="footer-content">
+                <!-- Logo y nombre -->
+                <div class="logo-container">
+                    <a href="/">
+                        <img src="/images/logo/logo_web.png" alt="Hotel Reef Logo" class="logo">
+                    </a>
+                </div>
+
+                <!-- Enlaces rápidos -->
+                <div class="footer-links">
+                    <a href="/">Inicio</a>
+                    <a href="/shows">Shows</a>
+                    <a href="/club">Pacific Club</a>
+                    <a href="/reserva">Reserva</a>
+                </div>
+
+                <!-- Redes sociales -->
+                <div class="footer-social">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="24">
+                    </a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" width="24">
+                    </a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" width="24">
+                    </a>
+                </div>
+
+                <!-- Información legal -->
+                <div class="footer-info">
+                    <p>&copy; 2025 Hotel Pacific Reef. Todos los derechos reservados.</p>
+                    <p><a href="#">Política de privacidad</a> | <a href="#">Términos y condiciones</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script src="/scripts/cuenta.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const qrImageContainer = document.querySelector('.qr-image');
+  const qrMessage = document.querySelector('.qr-message');
+  const downloadBtn = document.querySelector('.download-btn');
+
+  const reservaId = localStorage.getItem('reservaConfirmadaId');
+  const datos = JSON.parse(localStorage.getItem('reservaConfirmadaDatos'));
+  const perfil = JSON.parse(localStorage.getItem('perfilUsuario'));
+
+  if (!reservaId || !datos || !perfil) {
+    qrImageContainer.innerHTML = '<p>No se encontró la reserva. Redirigiendo...</p>';
+    setTimeout(() => {
+      window.location.href = '/pages/reserva.html';
+    }, 3000);
+    return;
+  }
+
+  // Construir contenido del QR
+  const contenidoQR = `
+Reserva ID: ${reservaId}
+Nombre: ${perfil.nombre}
+Usuario: ${perfil.usuario}
+Correo: ${perfil.correo}
+Teléfono: ${perfil.telefono}
+Habitación: ${datos.numero_habitacion}
+Fecha ingreso: ${formatearFecha(datos.fecha_inicio)}
+Fecha salida: ${formatearFecha(datos.fecha_fin)}
+Estado: ${datos.estado}
+Valor: $${datos.valor || '—'}
+  `.trim();
+
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(contenidoQR)}`;
+
+  // Insertar imagen QR
+  const img = document.createElement('img');
+  img.src = qrUrl;
+  img.alt = 'Código QR de reserva';
+  img.id = 'qr-img';
+  qrImageContainer.appendChild(img);
+
+  // Descargar QR
+  downloadBtn.addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.href = qrUrl;
+    link.download = `QR_Reserva_${reservaId}.png`;
+    link.click();
+  });
+
+  // Mostrar datos en pantalla
+  qrMessage.innerHTML = `
+    <p><strong>ID Reserva:</strong> ${reservaId}</p>
+    <p><strong>Nombre:</strong> ${perfil.nombre}</p>
+    <p><strong>Correo:</strong> ${perfil.correo}</p>
+    <p><strong>Habitación:</strong> ${datos.numero_habitacion}</p>
+    <p><strong>Fecha inicio:</strong> ${formatearFecha(datos.fecha_inicio)}</p>
+    <p><strong>Fecha fin:</strong> ${formatearFecha(datos.fecha_fin)}</p>
+    <p><strong>Estado:</strong> ${datos.estado}</p>
+    <p><strong>Valor:</strong> $${datos.valor || '—'}</p>
+  `;
+
+  function formatearFecha(fecha) {
+    const f = new Date(fecha);
+    return `${f.getDate().toString().padStart(2, '0')} / ${(f.getMonth()+1).toString().padStart(2, '0')} / ${f.getFullYear()}`;
+  }
+});
+</script>
+
+</html>

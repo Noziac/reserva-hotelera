@@ -1,90 +1,124 @@
--- Elimina la base de datos si ya existe, para empezar de cero
-DROP DATABASE IF EXISTS reservas_hotel;
--- Crear DB
-CREATE DATABASE reservas_hotel;
-USE reservas_hotel;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
--- Elimina las tablas si existen (útil para pruebas)
--- Se eliminan en orden inverso para evitar problemas de dependencias (Foreign Keys)
-DROP TABLE IF EXISTS tickets_qr CASCADE;
-DROP TABLE IF EXISTS pagos CASCADE;
-DROP TABLE IF EXISTS reservas CASCADE;
-DROP TABLE IF EXISTS habitaciones CASCADE;
-DROP TABLE IF EXISTS usuarios CASCADE;
-DROP TABLE IF EXISTS reportes CASCADE;
+body {
+    min-height: 100vh;
+    background-image: url('lobby-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
--- Tabla de usuarios
-CREATE TABLE usuarios (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    contraseña VARCHAR(100) NOT NULL,
-    rol VARCHAR(50) NOT NULL
-);
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: transparent;
+}
 
--- Tabla de habitaciones
-CREATE TABLE habitaciones (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    tipo VARCHAR(50) NOT NULL,
-    precio DECIMAL(10,2) NOT NULL,
-    disponible BOOLEAN DEFAULT TRUE
-);
+.logo img {
+    height: 40px;
+}
 
--- Tabla de reservas
-CREATE TABLE reservas (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    fecha_inicio DATE NOT NULL,
-    fecha_fin DATE NOT NULL,
-    estado VARCHAR(50) DEFAULT 'pendiente',
-    usuario_id INT NOT NULL,
-    habitacion_id INT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
-    FOREIGN KEY (habitacion_id) REFERENCES habitaciones(id)
-);
+.language-selector {
+    display: flex;
+    gap: 1rem;
+}
 
--- Tabla de pagos
-CREATE TABLE pagos (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    monto DECIMAL(10,2) NOT NULL,
-    fecha DATE NOT NULL,
-    reserva_id INT NOT NULL,
-    FOREIGN KEY (reserva_id) REFERENCES reservas(id)
-);
+.language-selector a {
+    color: #ff4500;
+    text-decoration: none;
+    font-weight: bold;
+}
 
--- Tabla de tickets QR
-CREATE TABLE tickets_qr (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    codigo VARCHAR(255) NOT NULL,
-    reserva_id INT NOT NULL,
-    FOREIGN KEY (reserva_id) REFERENCES reservas(id)
-);
+.registration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    padding: 2rem;
+}
 
--- Tabla de reportes
-CREATE TABLE reportes (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    periodo VARCHAR(50) NOT NULL,
-    datos TEXT
-);
+.registration-form {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(5px);
+}
 
--- Operaciones CRUD
+.registration-form h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
 
--- CREATE
-INSERT INTO usuarios (nombre, email, contraseña, rol)
-VALUES ('Jorge', 'jorge@email.com', '1234', 'cliente');
+.form-group {
+    margin-bottom: 1.5rem;
+}
 
-INSERT INTO habitaciones (tipo, precio, disponible)
-VALUES ('Suite', 120000, TRUE);
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 1rem;
+}
 
-INSERT INTO reservas (fecha_inicio, fecha_fin, estado, usuario_id, habitacion_id)
-VALUES ('2025-09-10', '2025-09-15', 'confirmada', 1, 1);
+.form-group.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+}
 
--- READ
-SELECT * FROM usuarios;
-SELECT * FROM habitaciones;
-SELECT * FROM reservas;
+.form-group.checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
 
--- UPDATE
-UPDATE reservas SET estado = 'cancelada' WHERE id = 1;
+.form-group.checkbox label {
+    font-size: 0.9rem;
+    cursor: pointer;
+}
 
--- DELETE
-DELETE FROM reservas WHERE id = 1;
+.submit-button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #ff4500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #ff5722;
+}
+
+@media (max-width: 768px) {
+    .registration-form {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+        padding: 0.8rem;
+    }
+}

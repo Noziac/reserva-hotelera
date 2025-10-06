@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Pacific Reef</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/informacion.css">
+</head>
+
+<body>
+    <header>
+        <div id="site-header">
+            <nav class="navbar">
+                <!-- Logo y nombre del hotel -->
+                <div class="logo-container">
+                    <a href="/">
+                        <img src="/images/logo/logo_movil.png" alt="Hotel Reef Logo" class="logo">
+                    </a>
+                </div>
+
+                
+                <!-- Menú de navegación principal -->
+                <div class="nav-links">
+                    <a href="/">INICIO</a>
+                    <a href="/shows">SHOWS</a>
+                    <a href="/club">PACIFIC CLUB</a>
+                    <a href="/reserva">RESERVA</a>
+                    <div class="cuenta-dropdown">
+                        <button id="cuenta-btn">MI CUENTA</button>
+                        <div id="cuenta-menu" class="cuenta-menu hidden">
+                          
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Selector de idioma -->
+                <div class="language-selector">
+                    <span id="current-lang">ES</span>
+                    <img src="https://flagcdn.com/w20/es.png" alt="Español" id="lang-es">
+                    <img src="https://flagcdn.com/w20/gb.png" alt="English" id="lang-en">
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="guest-info-container">
+            <section class="guest-info">
+                <h2>Información del huesped</h2>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Nombre completo:</label>
+                        <span id="nombre-completo"></span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <label>Nombre de usuario:</label>
+                        <span id="nombre-usuario"></span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <label>Correo:</label>
+                        <span id="correo-usuario"></span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <label>País:</label>
+                        <input type="text" name="pais" required>
+                    </div>
+                    
+                    <div class="info-item">
+                        <label>Ciudad:</label>
+                        <input type="text"  name="ciudad" required>
+                    </div>
+                    
+                    <div class="info-item">
+                        <label>Dirección:</label>
+                        <input type="text" name="direccion" required>
+                    </div>
+                    
+                    <div class="info-item">
+                        <label>Número de teléfono:</label>
+                        <input type="tel" name="telefono" required>
+                    </div>
+                </div>
+            </section>
+
+            <section class="payment-info">
+                <h2>Información de pago</h2>
+                
+                <div class="payment-grid">
+                    <div class="payment-item">
+                        <label>Número de tarjeta:</label>
+                        <input type="text" name="tarjeta-numero" maxlength="16" required>
+                    </div>
+                    
+                    <div class="payment-item">
+                        <label>Caducidad:</label>
+                        <input type="text" name="tarjeta-expiracion" maxlength="5" placeholder="MM/YY" required>
+                    </div>
+                    
+                    <div class="payment-item">
+                        <label>Código de seguridad:</label>
+                        <input type="text" name="tarjeta-codigo" maxlength="3" required>
+                    </div>
+                    
+                    <button class="save-card-btn">GUARDAR TARJETA</button>
+                </div>
+            </section>
+
+            <div class="navigation-buttons">
+                <button class="continue-btn">CONTINUAR</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div id="site-footer">
+            <div class="footer-content">
+                <!-- Logo y nombre -->
+                <div class="logo-container">
+                    <a href="/">
+                        <img src="/images/logo/logo_web.png" alt="Hotel Reef Logo" class="logo">
+                    </a>
+                </div>
+
+                <!-- Enlaces rápidos -->
+                <div class="footer-links">
+                    <a href="/">Inicio</a>
+                    <a href="/shows">Shows</a>
+                    <a href="/club">Pacific Club</a>
+                    <a href="/reserva">Reserva</a>
+                </div>
+
+                <!-- Redes sociales -->
+                <div class="footer-social">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="24">
+                    </a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" width="24">
+                    </a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" width="24">
+                    </a>
+                </div>
+
+                <!-- Información legal -->
+                <div class="footer-info">
+                    <p>&copy; 2025 Hotel Pacific Reef. Todos los derechos reservados.</p>
+                    <p><a href="#">Política de privacidad</a> | <a href="#">Términos y condiciones</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body> 
+
+<script src="/scripts/cuenta.js"></script>
+<script src="/scripts/lang.js"></script>
+<script src="/scripts/info.js"></script>
+
+</html>
