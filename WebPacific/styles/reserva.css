@@ -23,6 +23,7 @@
     font-weight: bold;
     margin-bottom: 0.25rem;
     color: rgb(255, 84, 34);
+    align-self: self-start;
 }
 
 .search-item select,
