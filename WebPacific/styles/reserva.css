@@ -88,11 +88,9 @@
     background-color: rgba(51, 51, 51, 0.95);
     width: 80%;
     min-height: 100vh;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin: 30px auto;
     border-radius: 15px;
+    justify-self: center;
 }
 
 .rooms-container {
@@ -156,12 +154,11 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 40px;
-    flex-wrap: wrap;
 }
 
 /* asdasdasdasdaasdasd */
 .price-section {
-    min-width: 250px;
+    min-width: 350px;
     padding-left: 20px;
 }
 
@@ -179,7 +176,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 0;
+    padding: 5px 5px;
+    background-color: white;
+    margin-bottom: 5px;
+    border-radius: 5px;
 }
 
 .price-tag {
